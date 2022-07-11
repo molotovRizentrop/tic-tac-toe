@@ -14,9 +14,16 @@
  * limitations under the License.
  */
 
+package kashtan.dev.tictactoe.component;
+
+import kashtan.dev.tictactoe.model.GameTable;
+
 /**
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
-public class Launcher {
+public class MoveComputer {
+    public void make(final GameTable gameTable) {
+
+    }
 }

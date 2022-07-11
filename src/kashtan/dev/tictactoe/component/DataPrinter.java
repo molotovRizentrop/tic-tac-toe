@@ -14,9 +14,20 @@
  * limitations under the License.
  */
 
+package kashtan.dev.tictactoe.component;
+
+import kashtan.dev.tictactoe.model.GameTable;
+
 /**
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
-public class Game {
+public class DataPrinter {
+    public void printDataPrinter() {
+
+    }
+
+    public void display(final GameTable gameTable) {
+
+    }
 }
