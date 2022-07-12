@@ -14,9 +14,22 @@
  * limitations under the License.
  */
 
-package kashtan.dev.tictactoe;/**
+package kashtan.dev.tictactoe;
+
+import kashtan.dev.tictactoe.component.*;
+
+/**
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
 public class Launcher {
+    public static void main(final String[] args) {
+        Game game = new Game(new DataPrinter(),
+                new MoveComputer(),
+                new MoveUser(),
+                new WinnerVerifier(),
+                new DrawVerifier());
+
+        game.play();
+    }
 }
