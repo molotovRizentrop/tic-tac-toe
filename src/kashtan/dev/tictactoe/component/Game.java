@@ -45,16 +45,16 @@ public final class Game {
 
     public void play() {
         System.out.println("choose the position");
-        dataPrinter.printDataPrinter();
+        dataPrinter.printMappingTable();
         GameTable gameTable = new GameTable();
         if (new Random().nextBoolean()) {
             moveComputer.make(gameTable);
-            dataPrinter.display(gameTable);
+            dataPrinter.printGameTable(gameTable);
         }
 
         while (true) {
             moveUser.make(gameTable);
-            dataPrinter.display(gameTable);
+            dataPrinter.printGameTable(gameTable);
             if (winnerVerifier.isUserWin(gameTable)) {
                 System.out.println("cong User");
                 break;
@@ -63,7 +63,7 @@ public final class Game {
                 break;
             }
             moveComputer.make(gameTable);
-            dataPrinter.display(gameTable);
+            dataPrinter.printGameTable(gameTable);
             if (winnerVerifier.isComputerWin(gameTable)) {
                 System.out.println("cong Comp");
                 break;
