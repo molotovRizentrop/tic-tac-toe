@@ -20,20 +20,21 @@ package kashtan.dev.tictactoe.model;
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
-public class GameTable {
-    private final char[][] table = {
-            {' ', ' ', ' '},
-            {' ', ' ', ' '},
-            {' ', ' ', ' '}
-    };
+public class Cell {
+    private final int row;
+    private final int col;
 
-    private boolean isEmpty(final Cell cell) {
-        return table[cell.getRow()][cell.getCol()] == ' ';
+
+    public Cell(final int row, final int col) {
+        this.row = row;
+        this.col = col;
     }
-    private int getSign(final Cell cell){
-        return table[cell.getRow()][cell.getCol()];
+
+    public int getRow() {
+        return row;
     }
-    private void setSign(final Cell cell, final char sign){
-        table[cell.getRow()][cell.getCol()] = sign;
+
+    public int getCol() {
+        return col;
     }
 }
