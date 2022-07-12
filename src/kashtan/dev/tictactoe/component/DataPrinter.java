@@ -44,5 +44,6 @@ public class DataPrinter {
             }
             System.out.println("|");
         }
+        System.out.println("-------------");
     }
 }
