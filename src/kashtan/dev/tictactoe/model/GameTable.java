@@ -29,7 +29,7 @@ public class GameTable {
             {' ', ' ', ' '}
     };
 
-    private boolean isEmpty(final Cell cell) {
+    public boolean isEmpty(final Cell cell) {
         return table[cell.getRow()][cell.getCol()] == ' ';
     }
 
@@ -37,7 +37,7 @@ public class GameTable {
         return table[cell.getRow()][cell.getCol()];
     }
 
-    private void setSign(final Cell cell, final char sign) {
+    public void setSign(final Cell cell, final char sign) {
         table[cell.getRow()][cell.getCol()] = sign;
     }
 
