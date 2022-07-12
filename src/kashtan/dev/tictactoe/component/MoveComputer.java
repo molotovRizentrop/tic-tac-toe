@@ -16,14 +16,25 @@
 
 package kashtan.dev.tictactoe.component;
 
+import kashtan.dev.tictactoe.model.Cell;
 import kashtan.dev.tictactoe.model.GameTable;
+
+import java.util.Random;
 
 /**
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
-public class MoveComputer {
+public class MoveComputer extends GameTable {
     public void make(final GameTable gameTable) {
-
+        while (true) {
+            int randomRow = new Random().nextInt(3);
+            int randomCol = new Random().nextInt(3);
+            Cell randomCell = new Cell(randomRow, randomCol);
+            if (gameTable.isEmpty(randomCell)) {
+                gameTable.setSign(randomCell, '0');
+                return;
+            }
+        }
     }
 }
