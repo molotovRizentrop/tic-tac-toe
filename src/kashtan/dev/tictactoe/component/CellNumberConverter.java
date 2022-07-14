@@ -22,25 +22,8 @@ import kashtan.dev.tictactoe.model.Cell;
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
-public class CellNumberConverter {
-    private final char[][] mapping = {
-            {'1', '2', '3'},
-            {'4', '5', '6'},
-            {'7', '8', '9'}
-    };
+public interface CellNumberConverter {
+    Cell getCell(char number);
 
-    public Cell getCell(final char number) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (mapping[i][j] == number) {
-                    return new Cell(i, j);
-                }
-            }
-        }
-        return null;
-    }
-
-    public char toNumber(final Cell cell) {
-        return mapping[cell.getRow()][cell.getCol()];
-    }
+    char toNumber(final Cell cell);
 }
