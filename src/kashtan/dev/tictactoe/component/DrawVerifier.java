@@ -16,6 +16,7 @@
 
 package kashtan.dev.tictactoe.component;
 
+import kashtan.dev.tictactoe.model.Cell;
 import kashtan.dev.tictactoe.model.GameTable;
 
 /**
@@ -24,6 +25,13 @@ import kashtan.dev.tictactoe.model.GameTable;
  **/
 public class DrawVerifier {
     public boolean isDraw(final GameTable gameTable) {
-        return false;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (gameTable.isEmpty(new Cell(i, j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
