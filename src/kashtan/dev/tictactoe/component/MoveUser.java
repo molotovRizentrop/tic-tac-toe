@@ -26,11 +26,11 @@ import java.util.Scanner;
  * email:bassanddub.co@gmail.com
  **/
 public class MoveUser {
-    private final char[][] mapping = {
-            {'7', '8', '9'},
-            {'4', '5', '6'},
-            {'1', '2', '3'}
-    };
+    CellNumberConverter cellNumberConverter;
+
+    public MoveUser(final CellNumberConverter cellNumberConverter) {
+        this.cellNumberConverter = cellNumberConverter;
+    }
 
     public void make(final GameTable gameTable) {
         while (true) {
@@ -51,20 +51,9 @@ public class MoveUser {
             if (userInput.length() == 1) {
                 final char ch = userInput.charAt(0);
                 if (ch >= '1' && ch <= '9') {
-                    return getCell(ch);
+                    return cellNumberConverter.getCell(ch);
                 }
             }
         }
-    }
-
-    private Cell getCell(final char ch) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (mapping[i][j] == ch) {
-                    return new Cell(i, j);
-                }
-            }
-        }
-        return null;
     }
 }
