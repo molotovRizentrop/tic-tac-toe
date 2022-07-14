@@ -17,7 +17,7 @@
 package kashtan.dev.tictactoe;
 
 import kashtan.dev.tictactoe.component.*;
-import kashtan.dev.tictactoe.keypad.DesktopNumericKeypadCellNumberConverter;
+import kashtan.dev.tictactoe.keypad.TerminalNumericKeypadCellNumberConverter;
 
 /**
  * author:kashtan
@@ -25,7 +25,7 @@ import kashtan.dev.tictactoe.keypad.DesktopNumericKeypadCellNumberConverter;
  **/
 public class Launcher {
     public static void main(final String[] args) {
-        CellNumberConverter cellNumberConverter = new DesktopNumericKeypadCellNumberConverter();
+        CellNumberConverter cellNumberConverter = new TerminalNumericKeypadCellNumberConverter();
         Game game = new Game(new DataPrinter(cellNumberConverter),
                 new MoveComputer(),
                 new MoveUser(cellNumberConverter),
