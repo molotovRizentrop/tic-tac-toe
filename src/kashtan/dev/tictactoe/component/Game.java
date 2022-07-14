@@ -29,18 +29,18 @@ public final class Game {
     private final MoveComputer moveComputer;
     private final MoveUser moveUser;
     private final WinnerVerifier winnerVerifier;
-    private final DrawVerifier drawVerifier;
+    private final CellVerifier cellVerifier;
 
     public Game(final DataPrinter dataPrinter,
                 final MoveComputer moveComputer,
                 final MoveUser moveUser,
                 final WinnerVerifier winnerVerifier,
-                final DrawVerifier drawVerifier) {
+                final CellVerifier cellVerifier) {
         this.dataPrinter = dataPrinter;
         this.moveComputer = moveComputer;
         this.moveUser = moveUser;
         this.winnerVerifier = winnerVerifier;
-        this.drawVerifier = drawVerifier;
+        this.cellVerifier = cellVerifier;
     }
 
     public void play() {
@@ -58,7 +58,7 @@ public final class Game {
             if (winnerVerifier.isUserWin(gameTable)) {
                 System.out.println("cong User");
                 break;
-            } else if (drawVerifier.isDraw(gameTable)) {
+            } else if (cellVerifier.allCellsFilled(gameTable)) {
                 System.out.println("draw");
                 break;
             }
@@ -67,7 +67,7 @@ public final class Game {
             if (winnerVerifier.isComputerWin(gameTable)) {
                 System.out.println("cong Comp");
                 break;
-            } else if (drawVerifier.isDraw(gameTable)) {
+            } else if (cellVerifier.allCellsFilled(gameTable)) {
                 System.out.println("draw");
                 break;
             }
