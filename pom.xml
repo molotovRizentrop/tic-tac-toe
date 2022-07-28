@@ -22,7 +22,7 @@
     <artifactId>tic-tac-toe</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>tic-tac-toe</name>
+    <name>Tic-Tac-Toe</name>
     <description>Simple console game tic-tac-toe</description>
     <url>http://dev.kashtan/java</url>
     <organization>
