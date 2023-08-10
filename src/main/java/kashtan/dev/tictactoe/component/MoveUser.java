@@ -21,6 +21,8 @@ import kashtan.dev.tictactoe.model.GameTable;
 
 import java.util.Scanner;
 
+import static kashtan.dev.tictactoe.model.Sign.X;
+
 /**
  * author:kashtan
  * email:bassanddub.co@gmail.com
@@ -36,7 +38,7 @@ public class MoveUser {
         while (true) {
             final Cell cell = getUserInput();
             if (gameTable.isEmpty(cell)) {
-                gameTable.setSign(cell, 'X');
+                gameTable.setSign(cell, X);
                 return;
             } else {
                 System.out.println("Can't make a move, because the cell is not free! Try again");

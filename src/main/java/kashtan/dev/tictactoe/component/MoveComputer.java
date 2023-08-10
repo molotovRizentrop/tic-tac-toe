@@ -21,6 +21,8 @@ import kashtan.dev.tictactoe.model.GameTable;
 
 import java.util.Random;
 
+import static kashtan.dev.tictactoe.model.Sign.O;
+
 /**
  * author:kashtan
  * email:bassanddub.co@gmail.com
@@ -32,7 +34,7 @@ public class MoveComputer extends GameTable {
             int randomCol = new Random().nextInt(3);
             Cell randomCell = new Cell(randomRow, randomCol);
             if (gameTable.isEmpty(randomCell)) {
-                gameTable.setSign(randomCell, '0');
+                gameTable.setSign(randomCell, O);
                 return;
             }
         }
