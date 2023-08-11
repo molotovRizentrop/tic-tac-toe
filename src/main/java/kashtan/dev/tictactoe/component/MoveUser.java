@@ -18,6 +18,7 @@ package kashtan.dev.tictactoe.component;
 
 import kashtan.dev.tictactoe.model.Cell;
 import kashtan.dev.tictactoe.model.GameTable;
+import kashtan.dev.tictactoe.model.Sign;
 
 import java.util.Scanner;
 
@@ -28,18 +29,19 @@ import static kashtan.dev.tictactoe.model.Sign.X;
  * email:bassanddub.co@gmail.com
  **/
 public class MoveUser implements Move {
-    CellNumberConverter cellNumberConverter;
+
+    private final CellNumberConverter cellNumberConverter;
 
     public MoveUser(final CellNumberConverter cellNumberConverter) {
         this.cellNumberConverter = cellNumberConverter;
     }
 
     @Override
-    public void make(final GameTable gameTable) {
+    public void make(final GameTable gameTable, final Sign sign) {
         while (true) {
             final Cell cell = getUserInput();
             if (gameTable.isEmpty(cell)) {
-                gameTable.setSign(cell, X);
+                gameTable.setSign(cell, sign);
                 return;
             } else {
                 System.out.println("Can't make a move, because the cell is not free! Try again");

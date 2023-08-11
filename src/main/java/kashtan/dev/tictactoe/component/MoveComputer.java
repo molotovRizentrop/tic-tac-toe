@@ -18,6 +18,7 @@ package kashtan.dev.tictactoe.component;
 
 import kashtan.dev.tictactoe.model.Cell;
 import kashtan.dev.tictactoe.model.GameTable;
+import kashtan.dev.tictactoe.model.Sign;
 
 import java.util.Random;
 
@@ -27,15 +28,17 @@ import static kashtan.dev.tictactoe.model.Sign.O;
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
-public class MoveComputer extends GameTable implements Move {
+public class MoveComputer implements Move {
+
     @Override
-    public void make(final GameTable gameTable) {
+    public void make(final GameTable gameTable, final Sign sign) {
+        final Random random = new Random();
         while (true) {
-            int randomRow = new Random().nextInt(3);
-            int randomCol = new Random().nextInt(3);
-            Cell randomCell = new Cell(randomRow, randomCol);
+            final int row = random.nextInt(3);
+            final int col = random.nextInt(3);
+            final Cell randomCell = new Cell(row, col);
             if (gameTable.isEmpty(randomCell)) {
-                gameTable.setSign(randomCell, O);
+                gameTable.setSign(randomCell, sign);
                 return;
             }
         }

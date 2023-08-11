@@ -17,8 +17,12 @@
 package kashtan.dev.tictactoe.component;
 
 import kashtan.dev.tictactoe.model.GameTable;
+import kashtan.dev.tictactoe.model.Player;
 
 import java.util.Random;
+
+import static kashtan.dev.tictactoe.model.Sign.O;
+import static kashtan.dev.tictactoe.model.Sign.X;
 
 /**
  * author:kashtan
@@ -44,34 +48,31 @@ public final class Game {
     }
 
     public void play() {
-        Move[] moves = new Move[]{moveUser, moveComputer};
-        System.out.println("choose the position");
+
+        System.out.println("Use the following mapping table to specify a cell using numbers from 1 to 9:");
         dataPrinter.printMappingTable();
-        GameTable gameTable = new GameTable();
+        final GameTable gameTable = new GameTable();
+
+        /*
         if (new Random().nextBoolean()) {
-            moveComputer.make(gameTable);
+            moveComputer.make(gameTable,players[1].getSign());
             dataPrinter.printGameTable(gameTable);
         }
 
+         */
+        
+        final Player[] players = {new Player(O, moveUser), new Player(X, moveComputer)};
         while (true) {
-            for (Move move : moves) {
-                move.make(gameTable);
+            for (final Player player : players) {
+                player.makeMove(gameTable);
                 dataPrinter.printGameTable(gameTable);
-                if (move.getClass() == moveUser.getClass()) {
-                    if (winnerVerifier.isUserWin(gameTable)) {
-                        System.out.println("cong User");
-                        printGameOver();
-                        return;
-                    }
-                } else {
-                    if (winnerVerifier.isComputerWin(gameTable)) {
-                        System.out.println("cong Comp");
-                        printGameOver();
-                        return;
-                    }
+                if (winnerVerifier.isWinner(gameTable, player)) {
+                    System.out.println(player + " WIN!");
+                    printGameOver();
+                    return;
                 }
                 if (cellVerifier.allCellsFilled(gameTable)) {
-                    System.out.println("draw");
+                    System.out.println("Sorry, DRAW!");
                     printGameOver();
                     return;
                 }
@@ -80,6 +81,6 @@ public final class Game {
     }
 
     private void printGameOver() {
-        System.out.println("game over");
+        System.out.println("GAME OVER!");
     }
 }
