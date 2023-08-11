@@ -18,6 +18,10 @@ package kashtan.dev.tictactoe;
 
 import kashtan.dev.tictactoe.component.*;
 import kashtan.dev.tictactoe.keypad.TerminalNumericKeypadCellNumberConverter;
+import kashtan.dev.tictactoe.model.Player;
+
+import static kashtan.dev.tictactoe.model.Sign.O;
+import static kashtan.dev.tictactoe.model.Sign.X;
 
 /**
  * author:kashtan
@@ -27,10 +31,11 @@ public class Launcher {
     public static void main(final String[] args) {
         CellNumberConverter cellNumberConverter = new TerminalNumericKeypadCellNumberConverter();
         Game game = new Game(new DataPrinter(cellNumberConverter),
-                new MoveComputer(),
-                new MoveUser(cellNumberConverter),
+                new Player(X, new MoveUser(cellNumberConverter)),
+                new Player(O, new MoveComputer()),
                 new WinnerVerifier(),
-                new CellVerifier());
+                new CellVerifier(),
+                false);
 
         game.play();
     }

@@ -29,7 +29,6 @@ import static kashtan.dev.tictactoe.model.Sign.O;
  * email:bassanddub.co@gmail.com
  **/
 public class MoveComputer implements Move {
-
     @Override
     public void make(final GameTable gameTable, final Sign sign) {
         final Random random = new Random();
