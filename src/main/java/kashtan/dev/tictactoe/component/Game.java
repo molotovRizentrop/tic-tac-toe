@@ -53,28 +53,33 @@ public final class Game {
             dataPrinter.printGameTable(gameTable);
         }
 
-        boolean gameOver = true;
-        while (gameOver) {
+        while (true) {
             for (Move move : moves) {
                 move.make(gameTable);
                 dataPrinter.printGameTable(gameTable);
                 if (move.getClass() == moveUser.getClass()) {
                     if (winnerVerifier.isUserWin(gameTable)) {
                         System.out.println("cong User");
-                        gameOver = false;
+                        printGameOver();
+                        return;
                     }
                 } else {
                     if (winnerVerifier.isComputerWin(gameTable)) {
                         System.out.println("cong Comp");
-                        gameOver = false;
+                        printGameOver();
+                        return;
                     }
                 }
                 if (cellVerifier.allCellsFilled(gameTable)) {
                     System.out.println("draw");
-                    gameOver = false;
+                    printGameOver();
+                    return;
                 }
             }
         }
+    }
+
+    private void printGameOver() {
         System.out.println("game over");
     }
 }
