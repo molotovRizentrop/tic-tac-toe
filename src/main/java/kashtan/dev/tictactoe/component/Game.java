@@ -44,6 +44,7 @@ public final class Game {
     }
 
     public void play() {
+        Move[] moves = new Move[]{moveUser, moveComputer};
         System.out.println("choose the position");
         dataPrinter.printMappingTable();
         GameTable gameTable = new GameTable();
@@ -52,24 +53,26 @@ public final class Game {
             dataPrinter.printGameTable(gameTable);
         }
 
-        while (true) {
-            moveUser.make(gameTable);
-            dataPrinter.printGameTable(gameTable);
-            if (winnerVerifier.isUserWin(gameTable)) {
-                System.out.println("cong User");
-                break;
-            } else if (cellVerifier.allCellsFilled(gameTable)) {
-                System.out.println("draw");
-                break;
-            }
-            moveComputer.make(gameTable);
-            dataPrinter.printGameTable(gameTable);
-            if (winnerVerifier.isComputerWin(gameTable)) {
-                System.out.println("cong Comp");
-                break;
-            } else if (cellVerifier.allCellsFilled(gameTable)) {
-                System.out.println("draw");
-                break;
+        boolean gameOver = true;
+        while (gameOver) {
+            for (Move move : moves) {
+                move.make(gameTable);
+                dataPrinter.printGameTable(gameTable);
+                if (move.getClass() == moveUser.getClass()) {
+                    if (winnerVerifier.isUserWin(gameTable)) {
+                        System.out.println("cong User");
+                        gameOver = false;
+                    }
+                } else {
+                    if (winnerVerifier.isComputerWin(gameTable)) {
+                        System.out.println("cong Comp");
+                        gameOver = false;
+                    }
+                }
+                if (cellVerifier.allCellsFilled(gameTable)) {
+                    System.out.println("draw");
+                    gameOver = false;
+                }
             }
         }
         System.out.println("game over");

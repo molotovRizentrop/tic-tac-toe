@@ -27,13 +27,14 @@ import static kashtan.dev.tictactoe.model.Sign.X;
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
-public class MoveUser {
+public class MoveUser implements Move {
     CellNumberConverter cellNumberConverter;
 
     public MoveUser(final CellNumberConverter cellNumberConverter) {
         this.cellNumberConverter = cellNumberConverter;
     }
 
+    @Override
     public void make(final GameTable gameTable) {
         while (true) {
             final Cell cell = getUserInput();

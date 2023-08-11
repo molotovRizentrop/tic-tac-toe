@@ -27,7 +27,8 @@ import static kashtan.dev.tictactoe.model.Sign.O;
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
-public class MoveComputer extends GameTable {
+public class MoveComputer extends GameTable implements Move {
+    @Override
     public void make(final GameTable gameTable) {
         while (true) {
             int randomRow = new Random().nextInt(3);
