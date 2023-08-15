@@ -16,20 +16,18 @@
 
 package kashtan.dev.tictactoe.component;
 
+import kashtan.dev.tictactoe.component.console.DataPrinterConsoleImpl;
 import kashtan.dev.tictactoe.model.GameTable;
 import kashtan.dev.tictactoe.model.Player;
 
 import java.util.Random;
-
-import static kashtan.dev.tictactoe.model.Sign.O;
-import static kashtan.dev.tictactoe.model.Sign.X;
 
 /**
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
 public final class Game {
-    private final DataPrinter dataPrinter;
+    private final DataPrinterImpl dataPrinter;
     private final Player player1;
     private final Player player2;
     private final WinnerVerifier winnerVerifier;
@@ -37,7 +35,7 @@ public final class Game {
 
     private final boolean canSecondPlayerMakeFirstMove;
 
-    public Game(final DataPrinter dataPrinter,
+    public Game(final DataPrinterImpl dataPrinter,
                 final Player player1,
                 final Player player2,
                 final WinnerVerifier winnerVerifier,
