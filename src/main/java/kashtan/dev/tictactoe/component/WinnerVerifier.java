@@ -21,9 +21,6 @@ import kashtan.dev.tictactoe.model.GameTable;
 import kashtan.dev.tictactoe.model.Player;
 import kashtan.dev.tictactoe.model.Sign;
 
-import static kashtan.dev.tictactoe.model.Sign.O;
-import static kashtan.dev.tictactoe.model.Sign.X;
-
 
 /**
  * author:kashtan

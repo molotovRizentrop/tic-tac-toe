@@ -16,12 +16,8 @@
 
 package kashtan.dev.tictactoe;
 
-import kashtan.dev.tictactoe.component.*;
-import kashtan.dev.tictactoe.keypad.TerminalNumericKeypadCellNumberConverter;
-import kashtan.dev.tictactoe.model.Player;
-
-import static kashtan.dev.tictactoe.model.Sign.O;
-import static kashtan.dev.tictactoe.model.Sign.X;
+import kashtan.dev.tictactoe.component.Game;
+import kashtan.dev.tictactoe.component.GameFactory;
 
 /**
  * author:kashtan

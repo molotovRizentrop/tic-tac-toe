@@ -22,8 +22,6 @@ import kashtan.dev.tictactoe.model.Sign;
 
 import java.util.Random;
 
-import static kashtan.dev.tictactoe.model.Sign.O;
-
 /**
  * author:kashtan
  * email:bassanddub.co@gmail.com

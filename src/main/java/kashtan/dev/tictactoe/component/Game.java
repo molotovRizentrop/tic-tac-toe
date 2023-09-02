@@ -16,7 +16,6 @@
 
 package kashtan.dev.tictactoe.component;
 
-import kashtan.dev.tictactoe.component.console.DataPrinterConsoleImpl;
 import kashtan.dev.tictactoe.model.GameTable;
 import kashtan.dev.tictactoe.model.Player;
 

@@ -22,8 +22,6 @@ import kashtan.dev.tictactoe.model.Sign;
 
 import java.util.Scanner;
 
-import static kashtan.dev.tictactoe.model.Sign.X;
-
 /**
  * author:kashtan
  * email:bassanddub.co@gmail.com
