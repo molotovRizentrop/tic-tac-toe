@@ -11,12 +11,12 @@ import java.util.Scanner;
  * @author:kashtan
  * @email:bassanddub.co@gmail.com
  **/
-public class UserInputReaderConsoleImpl implements UserInputReader {
+public class ConsoleUserInputReader implements UserInputReader {
 
     private final CellNumberConverter cellNumberConverter;
     private final DataPrinter dataPrinter;
 
-    public UserInputReaderConsoleImpl(final CellNumberConverter cellNumberConverter, final DataPrinter dataPrinter) {
+    public ConsoleUserInputReader(final CellNumberConverter cellNumberConverter, final DataPrinter dataPrinter) {
         this.cellNumberConverter = cellNumberConverter;
         this.dataPrinter = dataPrinter;
     }

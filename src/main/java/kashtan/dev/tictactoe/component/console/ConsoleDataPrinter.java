@@ -9,10 +9,10 @@ import kashtan.dev.tictactoe.model.GameTable;
  * @author:kashtan
  * @email:bassanddub.co@gmail.com
  **/
-public class DataPrinterConsoleImpl implements DataPrinter {
+public class ConsoleDataPrinter implements DataPrinter {
     private final CellNumberConverter cellNumberConverter;
 
-    public DataPrinterConsoleImpl(final CellNumberConverter cellNumberConverter) {
+    public ConsoleDataPrinter(final CellNumberConverter cellNumberConverter) {
         this.cellNumberConverter = cellNumberConverter;
     }
 
