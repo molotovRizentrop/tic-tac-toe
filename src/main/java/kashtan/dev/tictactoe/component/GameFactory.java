@@ -1,5 +1,7 @@
 package kashtan.dev.tictactoe.component;
 
+import kashtan.dev.tictactoe.component.console.DataPrinterConsoleImpl;
+import kashtan.dev.tictactoe.component.console.UserInputReaderConsoleImpl;
 import kashtan.dev.tictactoe.keypad.TerminalNumericKeypadCellNumberConverter;
 import kashtan.dev.tictactoe.model.Player;
 import kashtan.dev.tictactoe.model.PlayerType;
@@ -26,19 +28,21 @@ public class GameFactory {
 
     public Game create() {
         final CellNumberConverter cellNumberConverter = new TerminalNumericKeypadCellNumberConverter();
+        final DataPrinter dataPrinter = new DataPrinterConsoleImpl(cellNumberConverter);
+        final UserInputReader userInputReader = new UserInputReaderConsoleImpl(cellNumberConverter, dataPrinter);
         boolean canSecondPlayerMakeMove = (playerType1 != playerType2);
 
-        Player player1 = new Player(X, new MoveUser(cellNumberConverter));
+        Player player1 = new Player(X, new MoveUser(userInputReader, dataPrinter));
         Player player2 = new Player(O, new MoveComputer());
 
         if (playerType1 == COMPUTER && playerType2 == COMPUTER) {
             player1 = new Player(X, new MoveComputer());
         } else if (playerType1 == USER && playerType2 == USER) {
-            player2 = new Player(O, new MoveUser(cellNumberConverter));
+            player2 = new Player(O, new MoveUser(userInputReader, dataPrinter));
         }
 
         return new Game(
-                new DataPrinterImpl(cellNumberConverter),
+                dataPrinter,
                 player1,
                 player2,
                 new WinnerVerifier(),
