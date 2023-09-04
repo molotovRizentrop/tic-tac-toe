@@ -17,6 +17,7 @@
 package kashtan.dev.tictactoe.component.swing;
 
 import kashtan.dev.tictactoe.component.DataPrinter;
+import kashtan.dev.tictactoe.component.GameOverHandler;
 import kashtan.dev.tictactoe.component.UserInputReader;
 import kashtan.dev.tictactoe.model.Cell;
 import kashtan.dev.tictactoe.model.GameTable;
@@ -30,7 +31,7 @@ import java.awt.event.MouseEvent;
  * @author:kashtan
  * @email:bassanddub.co@gmail.com
  **/
-public final class GameWindow extends JFrame implements DataPrinter, UserInputReader {
+public final class GameWindow extends JFrame implements DataPrinter, UserInputReader, GameOverHandler {
 
     private static final int GAME_TABLE_SIZE = 3;
 
@@ -104,9 +105,10 @@ public final class GameWindow extends JFrame implements DataPrinter, UserInputRe
     }
 
     @Override
-    public void printMappingTable() {
-        // do nothing
+    public void printInstruction() {
+        //do nothing
     }
+
 
     @Override
     public void printGameTable(final GameTable gameTable) {
@@ -128,5 +130,10 @@ public final class GameWindow extends JFrame implements DataPrinter, UserInputRe
             }
         }
         return clickedCell;
+    }
+
+    @Override
+    public void gameOver() {
+        System.exit(0);
     }
 }

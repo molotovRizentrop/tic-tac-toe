@@ -17,6 +17,12 @@ public class ConsoleDataPrinter implements DataPrinter {
     }
 
     @Override
+    public void printInstruction() {
+        printInfoMessage("Use the following mapping table to specify a cell using numbers from 1 to 9:");
+        print((i, j) -> String.valueOf(cellNumberConverter.toNumber(new Cell(i, j))));
+    }
+
+    @Override
     public void printInfoMessage(final String text) {
         System.out.println(text);
     }
@@ -24,11 +30,6 @@ public class ConsoleDataPrinter implements DataPrinter {
     @Override
     public void printErrorMessage(final String text) {
         System.err.println(text);
-    }
-
-    @Override
-    public void printMappingTable() {
-        print((i, j) -> String.valueOf(cellNumberConverter.toNumber(new Cell(i, j))));
     }
 
     @Override

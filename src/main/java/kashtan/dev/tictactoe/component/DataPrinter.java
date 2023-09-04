@@ -7,11 +7,12 @@ import kashtan.dev.tictactoe.model.GameTable;
  * @email:bassanddub.co@gmail.com
  **/
 public interface DataPrinter {
+
+    void printInstruction();
+
     void printInfoMessage(String text);
 
     void printErrorMessage(String text);
-
-    void printMappingTable();
 
     void printGameTable(GameTable gameTable);
 }
