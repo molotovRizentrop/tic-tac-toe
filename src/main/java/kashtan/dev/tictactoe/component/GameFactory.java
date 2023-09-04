@@ -2,6 +2,7 @@ package kashtan.dev.tictactoe.component;
 
 import kashtan.dev.tictactoe.component.console.ConsoleDataPrinter;
 import kashtan.dev.tictactoe.component.console.ConsoleUserInputReader;
+import kashtan.dev.tictactoe.component.swing.GameWindow;
 import kashtan.dev.tictactoe.keypad.TerminalNumericKeypadCellNumberConverter;
 import kashtan.dev.tictactoe.model.Player;
 import kashtan.dev.tictactoe.model.PlayerType;
@@ -27,9 +28,16 @@ public class GameFactory {
     }
 
     public Game create() {
-        final CellNumberConverter cellNumberConverter = new TerminalNumericKeypadCellNumberConverter();
-        final DataPrinter dataPrinter = new ConsoleDataPrinter(cellNumberConverter);
-        final UserInputReader userInputReader = new ConsoleUserInputReader(cellNumberConverter, dataPrinter);
+                        /* GUI interface */
+        final GameWindow gameWindow = new GameWindow();
+        final DataPrinter dataPrinter = gameWindow;//
+        final UserInputReader userInputReader = gameWindow;
+
+                        /* CONSOLE interface */
+        // final CellNumberConverter cellNumberConverter = new DesktopNumericKeypadCellNumberConverter();
+        // final DataPrinter dataPrinter = new ConsoleDataPrinter(cellNumberConverter);
+        // final UserInputReader userInputReader = new ConsoleUserInputReader(cellNumberConverter, dataPrinter);
+
         boolean canSecondPlayerMakeMove = (playerType1 != playerType2);
 
         Player player1 = new Player(X, new MoveUser(userInputReader, dataPrinter));
