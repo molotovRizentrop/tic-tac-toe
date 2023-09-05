@@ -1,7 +1,7 @@
 package kashtan.dev.tictactoe.component;
 
-import kashtan.dev.tictactoe.model.GameTable;
-import kashtan.dev.tictactoe.model.Sign;
+import kashtan.dev.tictactoe.model.game.GameTable;
+import kashtan.dev.tictactoe.model.game.Sign;
 
 /**
  * @author:kashtan

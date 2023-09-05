@@ -19,8 +19,8 @@ package kashtan.dev.tictactoe.component.swing;
 import kashtan.dev.tictactoe.component.DataPrinter;
 import kashtan.dev.tictactoe.component.GameOverHandler;
 import kashtan.dev.tictactoe.component.UserInputReader;
-import kashtan.dev.tictactoe.model.Cell;
-import kashtan.dev.tictactoe.model.GameTable;
+import kashtan.dev.tictactoe.model.game.Cell;
+import kashtan.dev.tictactoe.model.game.GameTable;
 
 import javax.swing.*;
 import java.awt.*;

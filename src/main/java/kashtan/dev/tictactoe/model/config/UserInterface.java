@@ -1,4 +1,4 @@
-package kashtan.dev.tictactoe.model;
+package kashtan.dev.tictactoe.model.config;
 
 /**
  * @author:kashtan

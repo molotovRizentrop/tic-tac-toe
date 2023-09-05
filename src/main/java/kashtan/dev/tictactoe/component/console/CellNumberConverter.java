@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package kashtan.dev.tictactoe.component;
+package kashtan.dev.tictactoe.component.console;
 
-import kashtan.dev.tictactoe.model.Cell;
+import kashtan.dev.tictactoe.model.game.Cell;
 
 /**
  * author:kashtan

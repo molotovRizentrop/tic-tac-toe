@@ -17,7 +17,6 @@
 package kashtan.dev.tictactoe;
 
 import kashtan.dev.tictactoe.component.Game;
-import kashtan.dev.tictactoe.component.GameFactory;
 
 /**
  * author:kashtan

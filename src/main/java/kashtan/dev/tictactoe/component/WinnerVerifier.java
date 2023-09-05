@@ -16,10 +16,10 @@
 
 package kashtan.dev.tictactoe.component;
 
-import kashtan.dev.tictactoe.model.Cell;
-import kashtan.dev.tictactoe.model.GameTable;
-import kashtan.dev.tictactoe.model.Player;
-import kashtan.dev.tictactoe.model.Sign;
+import kashtan.dev.tictactoe.model.game.Cell;
+import kashtan.dev.tictactoe.model.game.GameTable;
+import kashtan.dev.tictactoe.model.game.Player;
+import kashtan.dev.tictactoe.model.game.Sign;
 
 
 /**

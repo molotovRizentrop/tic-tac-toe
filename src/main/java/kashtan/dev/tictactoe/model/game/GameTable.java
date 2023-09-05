@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package kashtan.dev.tictactoe.model;
+package kashtan.dev.tictactoe.model.game;
 
 import java.util.Arrays;
 
-import static kashtan.dev.tictactoe.model.Sign.EMPTY;
+import static kashtan.dev.tictactoe.model.game.Sign.EMPTY;
 
 /**
  * author:kashtan

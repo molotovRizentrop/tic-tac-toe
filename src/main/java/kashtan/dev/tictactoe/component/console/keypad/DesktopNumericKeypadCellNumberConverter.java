@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package kashtan.dev.tictactoe.keypad;
+package kashtan.dev.tictactoe.component.console.keypad;
 
-import kashtan.dev.tictactoe.component.CellNumberConverter;
-import kashtan.dev.tictactoe.model.Cell;
+import kashtan.dev.tictactoe.component.console.CellNumberConverter;
+import kashtan.dev.tictactoe.model.game.Cell;
 
 /**
  * author:kashtan

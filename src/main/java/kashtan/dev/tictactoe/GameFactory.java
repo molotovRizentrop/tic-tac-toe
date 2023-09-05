@@ -1,19 +1,22 @@
-package kashtan.dev.tictactoe.component;
+package kashtan.dev.tictactoe;
 
+import kashtan.dev.tictactoe.component.*;
+import kashtan.dev.tictactoe.component.config.CommandLineArgumentParser;
+import kashtan.dev.tictactoe.component.console.CellNumberConverter;
 import kashtan.dev.tictactoe.component.console.ConsoleDataPrinter;
 import kashtan.dev.tictactoe.component.console.ConsoleGameOverHandler;
 import kashtan.dev.tictactoe.component.console.ConsoleUserInputReader;
 import kashtan.dev.tictactoe.component.swing.GameWindow;
-import kashtan.dev.tictactoe.keypad.DesktopNumericKeypadCellNumberConverter;
-import kashtan.dev.tictactoe.model.Player;
-import kashtan.dev.tictactoe.model.PlayerType;
-import kashtan.dev.tictactoe.model.UserInterface;
+import kashtan.dev.tictactoe.component.console.keypad.DesktopNumericKeypadCellNumberConverter;
+import kashtan.dev.tictactoe.model.game.Player;
+import kashtan.dev.tictactoe.model.config.PlayerType;
+import kashtan.dev.tictactoe.model.config.UserInterface;
 
-import static kashtan.dev.tictactoe.model.PlayerType.COMPUTER;
-import static kashtan.dev.tictactoe.model.PlayerType.USER;
-import static kashtan.dev.tictactoe.model.Sign.O;
-import static kashtan.dev.tictactoe.model.Sign.X;
-import static kashtan.dev.tictactoe.model.UserInterface.GUI;
+import static kashtan.dev.tictactoe.model.config.PlayerType.COMPUTER;
+import static kashtan.dev.tictactoe.model.config.PlayerType.USER;
+import static kashtan.dev.tictactoe.model.game.Sign.O;
+import static kashtan.dev.tictactoe.model.game.Sign.X;
+import static kashtan.dev.tictactoe.model.config.UserInterface.GUI;
 
 /**
  * @author:kashtan

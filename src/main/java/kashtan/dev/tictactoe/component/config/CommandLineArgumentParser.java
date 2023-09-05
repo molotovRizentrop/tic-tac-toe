@@ -1,12 +1,12 @@
-package kashtan.dev.tictactoe.component;
+package kashtan.dev.tictactoe.component.config;
 
-import kashtan.dev.tictactoe.model.PlayerType;
-import kashtan.dev.tictactoe.model.UserInterface;
+import kashtan.dev.tictactoe.model.config.PlayerType;
+import kashtan.dev.tictactoe.model.config.UserInterface;
 
-import static kashtan.dev.tictactoe.model.PlayerType.COMPUTER;
-import static kashtan.dev.tictactoe.model.PlayerType.USER;
-import static kashtan.dev.tictactoe.model.UserInterface.CONSOLE;
-import static kashtan.dev.tictactoe.model.UserInterface.GUI;
+import static kashtan.dev.tictactoe.model.config.PlayerType.COMPUTER;
+import static kashtan.dev.tictactoe.model.config.PlayerType.USER;
+import static kashtan.dev.tictactoe.model.config.UserInterface.CONSOLE;
+import static kashtan.dev.tictactoe.model.config.UserInterface.GUI;
 
 /**
  * @author:kashtan

@@ -1,6 +1,6 @@
 package kashtan.dev.tictactoe.component;
 
-import kashtan.dev.tictactoe.model.Cell;
+import kashtan.dev.tictactoe.model.game.Cell;
 
 /**
  * @author:kashtan

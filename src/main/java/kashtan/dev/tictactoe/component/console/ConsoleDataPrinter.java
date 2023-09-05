@@ -1,9 +1,8 @@
 package kashtan.dev.tictactoe.component.console;
 
-import kashtan.dev.tictactoe.component.CellNumberConverter;
 import kashtan.dev.tictactoe.component.DataPrinter;
-import kashtan.dev.tictactoe.model.Cell;
-import kashtan.dev.tictactoe.model.GameTable;
+import kashtan.dev.tictactoe.model.game.Cell;
+import kashtan.dev.tictactoe.model.game.GameTable;
 
 /**
  * @author:kashtan
