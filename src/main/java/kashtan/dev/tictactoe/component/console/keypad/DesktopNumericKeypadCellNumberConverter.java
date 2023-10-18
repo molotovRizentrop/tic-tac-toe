@@ -31,7 +31,7 @@ public class DesktopNumericKeypadCellNumberConverter implements CellNumberConver
     };
 
     @Override
-    public Cell getCell(final char number) {
+    public Cell toCell(final char number) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (mapping[i][j] == number) {

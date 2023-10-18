@@ -28,7 +28,7 @@ public class ConsoleUserInputReader implements UserInputReader {
             if (userInput.length() == 1) {
                 final char ch = userInput.charAt(0);
                 if (ch >= '1' && ch <= '9') {
-                    return cellNumberConverter.getCell(ch);
+                    return cellNumberConverter.toCell(ch);
                 }
             }
         }

@@ -31,7 +31,7 @@ public class TerminalNumericKeypadCellNumberConverter implements CellNumberConve
     };
 
     @Override
-    public Cell getCell(final char number) {
+    public Cell toCell(final char number) {
         final int value = number - '0' - 1;
         return new Cell(value / 3, value % 3);
     }

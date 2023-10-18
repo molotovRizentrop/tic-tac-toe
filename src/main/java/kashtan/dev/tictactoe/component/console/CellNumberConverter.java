@@ -23,7 +23,7 @@ import kashtan.dev.tictactoe.model.game.Cell;
  * email:bassanddub.co@gmail.com
  **/
 public interface CellNumberConverter {
-    Cell getCell(char number);
+    Cell toCell(char number);
 
     char toNumber(final Cell cell);
 }
