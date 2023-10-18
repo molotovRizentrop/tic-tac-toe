@@ -22,13 +22,32 @@ import kashtan.dev.tictactoe.model.game.Sign;
 
 import java.util.Random;
 
+import static java.lang.String.format;
+
 /**
  * author:kashtan
  * email:bassanddub.co@gmail.com
  **/
 public class MoveComputer implements Move {
+    private boolean AllCellsIsFilled(final GameTable gameTable, final Sign sign) {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (gameTable.isEmpty(new Cell(i, j))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
     public void make(final GameTable gameTable, final Sign sign) {
+        if (AllCellsIsFilled(gameTable, sign)) {
+            throw new IllegalArgumentException(
+                    format("Game table does not contain any empty cell!")
+            );
+        }
+
         final Random random = new Random();
         while (true) {
             final int row = random.nextInt(3);
