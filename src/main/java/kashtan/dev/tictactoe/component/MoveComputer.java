@@ -29,34 +29,23 @@ import static java.lang.String.format;
  * email:bassanddub.co@gmail.com
  **/
 public class MoveComputer implements Move {
-    private boolean AllCellsIsFilled(final GameTable gameTable, final Sign sign) {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                if (gameTable.isEmpty(new Cell(i, j))) {
-                    return true;
+    @Override
+    public void make(final GameTable gameTable, final Sign sign) {
+        final Cell[] emptyCells = new Cell[9];
+        int count = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                final Cell cell = new Cell(i, j);
+                if (gameTable.isEmpty(cell)) {
+                    emptyCells[count++] = cell;
                 }
             }
         }
-        return false;
-    }
-
-    @Override
-    public void make(final GameTable gameTable, final Sign sign) {
-        if (AllCellsIsFilled(gameTable, sign)) {
-            throw new IllegalArgumentException(
-                    format("Game table does not contain any empty cell!")
-            );
-        }
-
-        final Random random = new Random();
-        while (true) {
-            final int row = random.nextInt(3);
-            final int col = random.nextInt(3);
-            final Cell randomCell = new Cell(row, col);
-            if (gameTable.isEmpty(randomCell)) {
-                gameTable.setSign(randomCell, sign);
-                return;
-            }
+        if (count > 0) {
+            final Cell randomCell = emptyCells[new Random().nextInt(count)];
+            gameTable.setSign(randomCell, sign);
+        } else {
+            throw new IllegalArgumentException("Game table does not contain any empty cell!");
         }
     }
 }
