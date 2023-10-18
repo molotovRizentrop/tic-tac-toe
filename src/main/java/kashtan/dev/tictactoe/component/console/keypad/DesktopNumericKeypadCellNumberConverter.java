@@ -42,12 +42,20 @@ public class DesktopNumericKeypadCellNumberConverter implements CellNumberConver
             }
         }
         throw new IllegalArgumentException(
-          format("Number parameter must be between '1' and '9'! Current value is '%s'!", number)
+                format("Number parameter must be between '1' and '9'! Current value is '%s'!", number)
         );
     }
 
     @Override
     public char toNumber(final Cell cell) {
-        return mapping[cell.getRow()][cell.getCol()];
+        try {
+            return mapping[cell.getRow()][cell.getCol()];
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+            throw new IllegalArgumentException(
+                    format("Row and coll indexes must be between 0 to 2!" +
+                            " current row:" + cell.getRow() +","+
+                            " current col:" + cell.getCol())+"."
+            );
+        }
     }
 }
