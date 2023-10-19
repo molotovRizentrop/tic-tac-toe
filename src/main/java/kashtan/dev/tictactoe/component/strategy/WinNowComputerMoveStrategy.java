@@ -10,98 +10,104 @@ import kashtan.dev.tictactoe.model.game.Sign;
  * @email:bassanddub.co@gmail.com
  **/
 public class WinNowComputerMoveStrategy implements ComputerMoveStrategy {
+
     @Override
     public boolean tryToMakeMove(final GameTable gameTable, final Sign sign) {
-        Cell winCell;
-        for (int column = 0; column < 3; column++) {
-            winCell = isWinnerByHorizontalLine(gameTable, sign, column);
-            if (winCell != null) {
-                if (gameTable.isEmpty(winCell)) {
-                    gameTable.setSign(winCell, sign);
-                    return true;
-                }
-            }
-        }
-        for (int column = 0; column < 3; column++) {
-            winCell = isWinnerByVerticalLine(gameTable, sign, column);
-            if (winCell != null) {
-                if (gameTable.isEmpty(winCell)) {
-                    gameTable.setSign(winCell, sign);
-                    return true;
-                }
-            }
-        }
+        return tryToMakeMoveByRows(gameTable, sign) ||
+                tryToMakeMoveByCols(gameTable, sign) ||
+                tryToMakeMoveByMainDiagonal(gameTable, sign) ||
+                tryToMakeMoveBySecondaryDiagonal(gameTable, sign);
+    }
 
-        winCell = isWinnerByFirstDiagonalColomn(gameTable, sign);
-        if (winCell != null) {
-            if (gameTable.isEmpty(winCell)) {
-                gameTable.setSign(winCell, sign);
-                return true;
+    private boolean tryToMakeMoveByRows(final GameTable gameTable, final Sign sign) {
+        for (int i = 0; i < 3; i++) {
+            int countEmptyCells = 0;
+            int countSignCells = 0;
+            Cell lastEmptyCell = null;
+            for (int j = 0; j < 3; j++) {
+                final Cell cell = new Cell(i, j);
+                if (gameTable.isEmpty(cell)) {
+                    lastEmptyCell = cell;
+                    countEmptyCells++;
+                } else if (gameTable.getSign(cell) == sign) {
+                    countSignCells++;
+                } else {
+                    break;
+                }
             }
-        }
-        winCell = isWinnerBySecondDiagonalColomn(gameTable, sign);
-        if (winCell != null) {
-            if (gameTable.isEmpty(winCell)) {
-                gameTable.setSign(winCell, sign);
+            if (countEmptyCells == 1 && countSignCells == 2) {
+                gameTable.setSign(lastEmptyCell, sign);
                 return true;
             }
         }
         return false;
     }
 
-    private Cell isWinnerByHorizontalLine(final GameTable gameTable, final Sign sign, final int column) {
-        if (gameTable.getSign(new Cell(column, 0)) == gameTable.getSign(new Cell(column, 1))
-                && gameTable.getSign(new Cell(column, 0)) == sign) {
-            return new Cell(column, 2);
-        } else if (gameTable.getSign(new Cell(column, 0)) == gameTable.getSign(new Cell(column, 2))
-                && gameTable.getSign(new Cell(column, 0)) == sign) {
-            return new Cell(column, 1);
-        } else if (gameTable.getSign(new Cell(column, 1)) == gameTable.getSign(new Cell(column, 2))
-                && gameTable.getSign(new Cell(column, 1)) == sign) {
-            return new Cell(column, 0);
+    private boolean tryToMakeMoveByCols(final GameTable gameTable, final Sign sign) {
+        for (int i = 0; i < 3; i++) {
+            int countEmptyCells = 0;
+            int countSignCells = 0;
+            Cell lastEmptyCell = null;
+            for (int j = 0; j < 3; j++) {
+                final Cell cell = new Cell(j, i);
+                if (gameTable.isEmpty(cell)) {
+                    lastEmptyCell = cell;
+                    countEmptyCells++;
+                } else if (gameTable.getSign(cell) == sign) {
+                    countSignCells++;
+                } else {
+                    break;
+                }
+            }
+            if (countEmptyCells == 1 && countSignCells == 2) {
+                gameTable.setSign(lastEmptyCell, sign);
+                return true;
+            }
         }
-        return null;
+        return false;
     }
 
-    private Cell isWinnerByVerticalLine(final GameTable gameTable, final Sign sign, final int column) {
-        if (gameTable.getSign(new Cell(0, column)) == gameTable.getSign(new Cell(1, column))
-                && gameTable.getSign(new Cell(0, column)) == sign) {
-            return new Cell(2, column);
-        } else if (gameTable.getSign(new Cell(0, column)) == gameTable.getSign(new Cell(2, column))
-                && gameTable.getSign(new Cell(0, column)) == sign) {
-            return new Cell(1, column);
-        } else if (gameTable.getSign(new Cell(1, column)) == gameTable.getSign(new Cell(2, column))
-                && gameTable.getSign(new Cell(1, column)) == sign) {
-            return new Cell(0, column);
+    private boolean tryToMakeMoveByMainDiagonal(final GameTable gameTable, final Sign sign) {
+        int countEmptyCells = 0;
+        int countSignCells = 0;
+        Cell lastEmptyCell = null;
+        for (int j = 0; j < 3; j++) {
+            final Cell cell = new Cell(j, j);
+            if (gameTable.isEmpty(cell)) {
+                lastEmptyCell = cell;
+                countEmptyCells++;
+            } else if (gameTable.getSign(cell) == sign) {
+                countSignCells++;
+            } else {
+                break;
+            }
         }
-        return null;
+        if (countEmptyCells == 1 && countSignCells == 2) {
+            gameTable.setSign(lastEmptyCell, sign);
+            return true;
+        }
+        return false;
     }
 
-    private Cell isWinnerByFirstDiagonalColomn(final GameTable gameTable, final Sign sign) {
-        if (gameTable.getSign(new Cell(0, 0)) == gameTable.getSign(new Cell(1, 1))
-                && gameTable.getSign(new Cell(0, 0)) == sign) {
-            return new Cell(2, 2);
-        } else if (gameTable.getSign(new Cell(0, 0)) == gameTable.getSign(new Cell(2, 2))
-                && gameTable.getSign(new Cell(0, 0)) == sign) {
-            return new Cell(1, 1);
-        } else if (gameTable.getSign(new Cell(1, 1)) == gameTable.getSign(new Cell(2, 2))
-                && gameTable.getSign(new Cell(1, 1)) == sign) {
-            return new Cell(0, 0);
+    private boolean tryToMakeMoveBySecondaryDiagonal(final GameTable gameTable, final Sign sign) {
+        int countEmptyCells = 0;
+        int countSignCells = 0;
+        Cell lastEmptyCell = null;
+        for (int j = 0; j < 3; j++) {
+            final Cell cell = new Cell(j, 2 - j);
+            if (gameTable.isEmpty(cell)) {
+                lastEmptyCell = cell;
+                countEmptyCells++;
+            } else if (gameTable.getSign(cell) == sign) {
+                countSignCells++;
+            } else {
+                break;
+            }
         }
-        return null;
-    }
-
-    private Cell isWinnerBySecondDiagonalColomn(final GameTable gameTable, final Sign sign) {
-        if (gameTable.getSign(new Cell(0, 2)) == gameTable.getSign(new Cell(1, 1))
-                && gameTable.getSign(new Cell(0, 2)) == sign) {
-            return new Cell(2, 0);
-        } else if (gameTable.getSign(new Cell(0, 2)) == gameTable.getSign(new Cell(2, 0))
-                && gameTable.getSign(new Cell(0, 2)) == sign) {
-            return new Cell(1, 1);
-        } else if (gameTable.getSign(new Cell(1, 1)) == gameTable.getSign(new Cell(0, 2))
-                && gameTable.getSign(new Cell(1, 1)) == sign) {
-            return new Cell(0, 2);
+        if (countEmptyCells == 1 && countSignCells == 2) {
+            gameTable.setSign(lastEmptyCell, sign);
+            return true;
         }
-        return null;
+        return false;
     }
 }
