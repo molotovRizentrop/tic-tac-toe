@@ -6,6 +6,7 @@ import kashtan.dev.tictactoe.component.console.CellNumberConverter;
 import kashtan.dev.tictactoe.component.console.ConsoleDataPrinter;
 import kashtan.dev.tictactoe.component.console.ConsoleGameOverHandler;
 import kashtan.dev.tictactoe.component.console.ConsoleUserInputReader;
+import kashtan.dev.tictactoe.component.strategy.RandomMoveComputerStrategy;
 import kashtan.dev.tictactoe.component.swing.GameWindow;
 import kashtan.dev.tictactoe.component.console.keypad.DesktopNumericKeypadCellNumberConverter;
 import kashtan.dev.tictactoe.model.game.Player;
@@ -36,6 +37,9 @@ public class GameFactory {
     }
 
     public Game create() {
+        final ComputerMoveStrategy[] strategies = {
+                new RandomMoveComputerStrategy()
+        };
         final DataPrinter dataPrinter;
         final UserInputReader userInputReader;
         final GameOverHandler gameOverHandler;
@@ -54,10 +58,10 @@ public class GameFactory {
         boolean canSecondPlayerMakeMove = (playerType1 != playerType2);
 
         Player player1 = new Player(X, new MoveUser(userInputReader, dataPrinter));
-        Player player2 = new Player(O, new MoveComputer());
+        Player player2 = new Player(O, new ComputerMove(strategies));
 
         if (playerType1 == COMPUTER && playerType2 == COMPUTER) {
-            player1 = new Player(X, new MoveComputer());
+            player1 = new Player(X, new ComputerMove(strategies));
         } else if (playerType1 == USER && playerType2 == USER) {
             player2 = new Player(O, new MoveUser(userInputReader, dataPrinter));
         }
