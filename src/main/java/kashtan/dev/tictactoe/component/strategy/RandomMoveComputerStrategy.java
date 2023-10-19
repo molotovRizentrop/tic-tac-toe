@@ -12,9 +12,6 @@ import java.util.Random;
  * @email:bassanddub.co@gmail.com
  **/
 public class RandomMoveComputerStrategy implements ComputerMoveStrategy {
-    public RandomMoveComputerStrategy() {
-
-    }
 
     @Override
     public boolean tryToMakeMove(final GameTable gameTable, final Sign sign) {
