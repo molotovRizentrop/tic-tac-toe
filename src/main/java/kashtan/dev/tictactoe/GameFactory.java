@@ -6,6 +6,7 @@ import kashtan.dev.tictactoe.component.console.CellNumberConverter;
 import kashtan.dev.tictactoe.component.console.ConsoleDataPrinter;
 import kashtan.dev.tictactoe.component.console.ConsoleGameOverHandler;
 import kashtan.dev.tictactoe.component.console.ConsoleUserInputReader;
+import kashtan.dev.tictactoe.component.strategy.FirstMoveToTheCenterComputerMoveStrategy;
 import kashtan.dev.tictactoe.component.strategy.RandomMoveComputerStrategy;
 import kashtan.dev.tictactoe.component.swing.GameWindow;
 import kashtan.dev.tictactoe.component.console.keypad.DesktopNumericKeypadCellNumberConverter;
@@ -38,6 +39,7 @@ public class GameFactory {
 
     public Game create() {
         final ComputerMoveStrategy[] strategies = {
+                new FirstMoveToTheCenterComputerMoveStrategy(),
                 new RandomMoveComputerStrategy()
         };
         final DataPrinter dataPrinter;
