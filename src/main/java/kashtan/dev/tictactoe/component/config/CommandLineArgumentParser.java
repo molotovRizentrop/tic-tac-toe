@@ -30,6 +30,9 @@ public class CommandLineArgumentParser {
                     playerType1 = PlayerType.valueOf(arg.toUpperCase());
                 } else if (playerType2 == null) {
                     playerType2 = PlayerType.valueOf(arg.toUpperCase());
+                } else if (playerType1 != null && playerType2 != null) {
+                    System.err.println("Players are already set");
+                    System.err.println("PlayerType1: "+playerType1+"\nPlayerType2: "+playerType2);
                 } else {
                     System.err.println("Unsupported command line argument: '" + arg + "'");
                 }
