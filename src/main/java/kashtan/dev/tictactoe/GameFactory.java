@@ -7,6 +7,7 @@ import kashtan.dev.tictactoe.component.console.ConsoleDataPrinter;
 import kashtan.dev.tictactoe.component.console.ConsoleGameOverHandler;
 import kashtan.dev.tictactoe.component.console.ConsoleUserInputReader;
 import kashtan.dev.tictactoe.component.strategy.FirstMoveToTheCenterComputerMoveStrategy;
+import kashtan.dev.tictactoe.component.strategy.PreventUserWinComputerMoveStrategy;
 import kashtan.dev.tictactoe.component.strategy.RandomMoveComputerStrategy;
 import kashtan.dev.tictactoe.component.strategy.WinNowComputerMoveStrategy;
 import kashtan.dev.tictactoe.component.swing.GameWindow;
@@ -14,6 +15,7 @@ import kashtan.dev.tictactoe.component.console.keypad.DesktopNumericKeypadCellNu
 import kashtan.dev.tictactoe.model.game.Player;
 import kashtan.dev.tictactoe.model.config.PlayerType;
 import kashtan.dev.tictactoe.model.config.UserInterface;
+import kashtan.dev.tictactoe.model.game.Sign;
 
 import static kashtan.dev.tictactoe.model.config.PlayerType.COMPUTER;
 import static kashtan.dev.tictactoe.model.config.PlayerType.USER;
@@ -31,6 +33,7 @@ public class GameFactory {
     private final UserInterface userInterface;
 
     public GameFactory(final String[] args) {
+
         CommandLineArgumentParser.CommandLineArguments commandLineArguments =
                 new CommandLineArgumentParser(args).parse();
         playerType1 = commandLineArguments.getPlayerType1();
@@ -39,8 +42,10 @@ public class GameFactory {
     }
 
     public Game create() {
+
         final ComputerMoveStrategy[] strategies = {
                 new WinNowComputerMoveStrategy(),
+                new PreventUserWinComputerMoveStrategy(),
                 new FirstMoveToTheCenterComputerMoveStrategy(),
                 new RandomMoveComputerStrategy()
         };
