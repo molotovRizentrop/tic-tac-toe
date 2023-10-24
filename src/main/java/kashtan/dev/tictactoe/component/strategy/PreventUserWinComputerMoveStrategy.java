@@ -13,47 +13,40 @@ public class PreventUserWinComputerMoveStrategy implements ComputerMoveStrategy 
 
     @Override
     public boolean tryToMakeMove(final GameTable gameTable, final Sign sign) {
-        Sign oppositeSign;
-        if (sign == Sign.X) {
-            oppositeSign = Sign.O;
-        } else
-            oppositeSign = Sign.X;
-
-        return tryToMakeMoveByRows(gameTable, sign, oppositeSign) ||
-                tryToMakeMoveByCols(gameTable, sign, oppositeSign) ||
-                tryToMakeMoveByMainDiagonal(gameTable, sign, oppositeSign) ||
-                tryToMakeMoveBySecondaryDiagonal(gameTable, sign, oppositeSign);
+        return tryToMakeMoveByRows(gameTable, sign) ||
+                tryToMakeMoveByCols(gameTable, sign) ||
+                tryToMakeMoveByMainDiagonal(gameTable, sign) ||
+                tryToMakeMoveBySecondaryDiagonal(gameTable, sign);
     }
 
     @SuppressWarnings("Convert2MethodRef")
-    private boolean tryToMakeMoveByRows(final GameTable gameTable, final Sign sign, final Sign oppositeSign) {
+    private boolean tryToMakeMoveByRows(final GameTable gameTable, final Sign sign) {
         for (int i = 0; i < 3; i++) {
-            if (tryToMakeMoveUseLambda(oppositeSign,gameTable, sign, i, ((k, j) -> new Cell(k, j)))) {
+            if (tryToMakeMoveUseLambda(gameTable, sign, i, ((k, j) -> new Cell(k, j)))) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean tryToMakeMoveByCols(final GameTable gameTable, final Sign sign, final Sign oppositeSign) {
+    private boolean tryToMakeMoveByCols(final GameTable gameTable, final Sign sign) {
         for (int i = 0; i < 3; i++) {
-            if (tryToMakeMoveUseLambda(oppositeSign,gameTable, sign, i, ((k, j) -> new Cell(j, k)))) {
+            if (tryToMakeMoveUseLambda(gameTable, sign, i, ((k, j) -> new Cell(j, k)))) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean tryToMakeMoveByMainDiagonal(final GameTable gameTable, final Sign sign, final Sign oppositeSign) {
-        return tryToMakeMoveUseLambda(oppositeSign,gameTable, sign, -1, ((k, j) -> new Cell(j, j)));
+    private boolean tryToMakeMoveByMainDiagonal(final GameTable gameTable, final Sign sign) {
+        return tryToMakeMoveUseLambda(gameTable, sign, -1, ((k, j) -> new Cell(j, j)));
     }
 
-    private boolean tryToMakeMoveBySecondaryDiagonal(final GameTable gameTable, final Sign sign, final Sign oppositeSign) {
-        return tryToMakeMoveUseLambda(oppositeSign, gameTable, sign, -1, ((k, j) -> new Cell(j, 2 - j)));
+    private boolean tryToMakeMoveBySecondaryDiagonal(final GameTable gameTable, final Sign sign) {
+        return tryToMakeMoveUseLambda(gameTable, sign, -1, ((k, j) -> new Cell(j, 2 - j)));
     }
 
-    private boolean tryToMakeMoveUseLambda(final Sign oppositeSign,
-                                           final GameTable gameTable,
+    private boolean tryToMakeMoveUseLambda(final GameTable gameTable,
                                            final Sign sign,
                                            final int i,
                                            final Lambda lambda) {
@@ -65,7 +58,7 @@ public class PreventUserWinComputerMoveStrategy implements ComputerMoveStrategy 
             if (gameTable.isEmpty(cell)) {
                 lastEmptyCell = cell;
                 countEmptyCells++;
-            } else if (gameTable.getSign(cell) == oppositeSign) {
+            } else if (gameTable.getSign(cell) == sign.oppositeSign()) {
                 countSignCells++;
             } else {
                 break;
