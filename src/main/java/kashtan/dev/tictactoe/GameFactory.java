@@ -9,11 +9,13 @@ import kashtan.dev.tictactoe.component.console.ConsoleUserInputReader;
 import kashtan.dev.tictactoe.component.strategy.*;
 import kashtan.dev.tictactoe.component.swing.GameWindow;
 import kashtan.dev.tictactoe.component.console.keypad.DesktopNumericKeypadCellNumberConverter;
+import kashtan.dev.tictactoe.model.config.LevelComputer;
 import kashtan.dev.tictactoe.model.game.Player;
 import kashtan.dev.tictactoe.model.config.PlayerType;
 import kashtan.dev.tictactoe.model.config.UserInterface;
 import kashtan.dev.tictactoe.model.game.Sign;
 
+import static kashtan.dev.tictactoe.model.config.LevelComputer.*;
 import static kashtan.dev.tictactoe.model.config.PlayerType.COMPUTER;
 import static kashtan.dev.tictactoe.model.config.PlayerType.USER;
 import static kashtan.dev.tictactoe.model.game.Sign.O;
@@ -29,6 +31,8 @@ public class GameFactory {
     private final PlayerType playerType2;
     private final UserInterface userInterface;
 
+    private final LevelComputer levelComputer;
+
     public GameFactory(final String[] args) {
 
         CommandLineArgumentParser.CommandLineArguments commandLineArguments =
@@ -36,17 +40,11 @@ public class GameFactory {
         playerType1 = commandLineArguments.getPlayerType1();
         playerType2 = commandLineArguments.getPlayerType2();
         userInterface = commandLineArguments.getUserInterface();
+        levelComputer = commandLineArguments.getLevelComputer();
     }
 
     public Game create() {
-
-        final ComputerMoveStrategy[] strategies = {
-                new WinNowComputerMoveStrategy(),
-                new PreventUserWinComputerMoveStrategy(),
-                new WinOnTheNextStepComputerMoveStrategy(),
-                new FirstMoveToTheCenterComputerMoveStrategy(),
-                new RandomMoveComputerStrategy()
-        };
+        final ComputerMoveStrategy[] strategies = getComputerMoveStrategies(levelComputer);
         final DataPrinter dataPrinter;
         final UserInputReader userInputReader;
         final GameOverHandler gameOverHandler;
@@ -68,6 +66,7 @@ public class GameFactory {
         Player player2 = new Player(O, new ComputerMove(strategies));
 
         if (playerType1 == COMPUTER && playerType2 == COMPUTER) {
+
             player1 = new Player(X, new ComputerMove(strategies));
         } else if (playerType1 == USER && playerType2 == USER) {
             player2 = new Player(O, new MoveUser(userInputReader, dataPrinter));
@@ -81,5 +80,33 @@ public class GameFactory {
                 new CellVerifier(),
                 gameOverHandler,
                 canSecondPlayerMakeMove);
+    }
+
+    private ComputerMoveStrategy[] getComputerMoveStrategies(final LevelComputer levelComputer) {
+        ComputerMoveStrategy[] strategies;
+        if (levelComputer == LEVEL3) {
+            strategies = new ComputerMoveStrategy[]{
+                    new WinNowComputerMoveStrategy(),
+                    new PreventUserWinComputerMoveStrategy(),
+                    new WinOnTheNextStepComputerMoveStrategy(),
+                    new FirstMoveToTheCenterComputerMoveStrategy(),
+                    new RandomMoveComputerStrategy()
+            };
+        } else if (levelComputer == LEVEL2) {
+            strategies = new ComputerMoveStrategy[]{
+                    new WinNowComputerMoveStrategy(),
+                    new PreventUserWinComputerMoveStrategy(),
+                    new FirstMoveToTheCenterComputerMoveStrategy(),
+                    new RandomMoveComputerStrategy()
+            };
+        } else if (levelComputer == LEVEL1) {
+            strategies = new ComputerMoveStrategy[]{
+                    new FirstMoveToTheCenterComputerMoveStrategy(),
+                    new RandomMoveComputerStrategy()
+            };
+        } else {
+            throw new IllegalStateException("Unsupported levelComputer: " + levelComputer);
+        }
+        return strategies;
     }
 }
