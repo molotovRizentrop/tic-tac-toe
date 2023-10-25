@@ -36,6 +36,6 @@ public enum LevelComputer {
     }
 
     public ComputerMoveStrategy[] getStrategies() {
-        return strategies;
+        return strategies.clone();
     }
 }
