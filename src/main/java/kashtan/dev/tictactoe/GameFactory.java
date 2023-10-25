@@ -44,7 +44,6 @@ public class GameFactory {
     }
 
     public Game create() {
-        final ComputerMoveStrategy[] strategies = getComputerMoveStrategies(levelComputer);
         final DataPrinter dataPrinter;
         final UserInputReader userInputReader;
         final GameOverHandler gameOverHandler;
@@ -63,11 +62,11 @@ public class GameFactory {
         boolean canSecondPlayerMakeMove = (playerType1 != playerType2);
 
         Player player1 = new Player(X, new MoveUser(userInputReader, dataPrinter));
-        Player player2 = new Player(O, new ComputerMove(strategies));
+        Player player2 = new Player(O, new ComputerMove(levelComputer.getStrategies()));
 
         if (playerType1 == COMPUTER && playerType2 == COMPUTER) {
 
-            player1 = new Player(X, new ComputerMove(strategies));
+            player1 = new Player(X, new ComputerMove(levelComputer.getStrategies()));
         } else if (playerType1 == USER && playerType2 == USER) {
             player2 = new Player(O, new MoveUser(userInputReader, dataPrinter));
         }
@@ -82,31 +81,4 @@ public class GameFactory {
                 canSecondPlayerMakeMove);
     }
 
-    private ComputerMoveStrategy[] getComputerMoveStrategies(final LevelComputer levelComputer) {
-        ComputerMoveStrategy[] strategies;
-        if (levelComputer == LEVEL3) {
-            strategies = new ComputerMoveStrategy[]{
-                    new WinNowComputerMoveStrategy(),
-                    new PreventUserWinComputerMoveStrategy(),
-                    new WinOnTheNextStepComputerMoveStrategy(),
-                    new FirstMoveToTheCenterComputerMoveStrategy(),
-                    new RandomMoveComputerStrategy()
-            };
-        } else if (levelComputer == LEVEL2) {
-            strategies = new ComputerMoveStrategy[]{
-                    new WinNowComputerMoveStrategy(),
-                    new PreventUserWinComputerMoveStrategy(),
-                    new FirstMoveToTheCenterComputerMoveStrategy(),
-                    new RandomMoveComputerStrategy()
-            };
-        } else if (levelComputer == LEVEL1) {
-            strategies = new ComputerMoveStrategy[]{
-                    new FirstMoveToTheCenterComputerMoveStrategy(),
-                    new RandomMoveComputerStrategy()
-            };
-        } else {
-            throw new IllegalStateException("Unsupported levelComputer: " + levelComputer);
-        }
-        return strategies;
-    }
 }
